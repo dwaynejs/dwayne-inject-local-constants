@@ -18,6 +18,8 @@ $ npm install --save dwayne-inject-local-constants
 ### Usage
 
 ```html
+<!-- User/index.html -->
+
 <div class="user">
   <span class="name">
     {_.truncate(globals.user.name, { length: 15 })}
@@ -29,6 +31,8 @@ $ npm install --save dwayne-inject-local-constants
 ```
 
 ```js
+// User/index.js
+
 import { Block } from 'dwayne';
 import _ from 'lodash';
 import moment from 'moment';
