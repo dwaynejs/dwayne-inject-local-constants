@@ -5,7 +5,7 @@ export default (locals) => {
     return class extends Block {
       afterConstruct() {
         for (const key in locals) {
-          if (hasOwnProperty.call(key)) {
+          if (locals::hasOwnProperty(key)) {
             this[key] = locals[key];
           }
         }
