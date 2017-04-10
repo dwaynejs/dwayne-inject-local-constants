@@ -1,6 +1,6 @@
 {
   "name": "dwayne-inject-local-constants",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/inject-local-constants.js",
   "devDependencies": {
     "babel-core": "^6.24.0",
