@@ -36,30 +36,19 @@ $ npm install --save dwayne-inject-local-constants
 import { Block } from 'dwayne';
 import _ from 'lodash';
 import moment from 'moment';
-import template from './index.html';
+import html from './index.html';
 import injectConstants from 'dwayne-inject-local-constants';
 
 class User extends Block {
-  static template = template;
+  static html = html;
 }
 
-Block.block('User', User.wrap(
+export default User.wrap(
   injectConstants({
     _,
     moment
   })
-));
-
-// or if you need them in all blocks (which is more probable)
-
-Block.beforeRegisterBlock((Block) => {
-  return Block.wrap(
-    injectConstants({
-      _,
-      moment
-    })
-  );
-});
+);
 ```
 
 Note that the constants are declared after `Block#constructor`,
