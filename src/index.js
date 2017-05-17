@@ -1,6 +1,8 @@
+import { Block } from 'dwayne';
+
 const { hasOwnProperty } = {};
 
-export default (locals) => {
+export function injectConstantsWrapper(locals) {
   return (Block) => {
     return class extends Block {
       afterConstruct() {
@@ -14,4 +16,18 @@ export default (locals) => {
       }
     };
   };
-};
+}
+
+export function injectConstantsExtendFn(locals) {
+  return class extends Block {
+    _afterConstruct() {
+      for (const key in locals) {
+        if (locals::hasOwnProperty(key)) {
+          this[key] = locals[key];
+        }
+      }
+
+      super._afterConstruct();
+    }
+  };
+}

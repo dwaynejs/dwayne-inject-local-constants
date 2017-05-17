@@ -37,14 +37,32 @@ import { Block } from 'dwayne';
 import _ from 'lodash';
 import moment from 'moment';
 import html from './index.html';
-import injectConstants from 'dwayne-inject-local-constants';
+import { injectConstantsWrapper } from 'dwayne-inject-local-constants';
 
 class User extends Block {
   static html = html;
 }
 
 export default User.wrap(
-  injectConstants({
+  injectConstantsWrapper({
+    _,
+    moment
+  })
+);
+```
+
+or if you need them in all blocks (which is more likely):
+
+```js
+// app/extends.js
+
+import { Block } from 'dwayne';
+import _ from 'lodash';
+import moment from 'moment';
+import { injectConstantsExtendFn } from 'dwayne-inject-local-constants';
+
+Block.extend(
+  injectLocalsExtendFn({
     _,
     moment
   })
@@ -52,6 +70,6 @@ export default User.wrap(
 ```
 
 Note that the constants are declared after `Block#constructor`,
-because they are constants and they are not needed in watching.
-But you still can use them in the template or class methods
+because they are constants and they don't need watching.
+But you still can use them in the html or any other class methods
 (`Block#afterConstruct` and later).
